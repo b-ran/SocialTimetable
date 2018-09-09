@@ -1,13 +1,23 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, Image, TextInput, Button, Alert, TouchableOpacity} from 'react-native';
+import {createStackNavigator} from "react-navigation";
+import ForgottenPassword from "./ForgottenPassword";
 
-export default class Login extends Component{
+export default class Login extends Component {
+
+    static navigationOptions = {
+        header: null,
+        // title: "Login",
+        // headerStyle: {
+        //     backgroundColor: "#FFB039",
+        // },
+        // headerTintColor: '#FFF',
+    };
 
     state = {
         email: "",
         password: "",
     };
-
 
     login = () => {
         const { email, password } = this.state;
@@ -54,7 +64,7 @@ export default class Login extends Component{
                   <Button title={"Login"} onPress={this.login} color={"#FFB039"}/>
 
                   <View style={styles.subButtonsContainer}>
-                    <TouchableOpacity onPress={this.login} style={{marginRight: 10}}>
+                    <TouchableOpacity onPress={()=> this.props.navigation.navigate("ForgottenPassword")} style={{marginRight: 10}}>
                         <Text style={{color:"#FFF"}}>Forgotten Password</Text>
                     </TouchableOpacity>
 
@@ -69,8 +79,9 @@ export default class Login extends Component{
 
         );
     }
-
 }
+
+
 
 const styles = StyleSheet.create({
     container: {
