@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, Image, TextInput, Button, Alert, TouchableOpacity} from 'react-native';
+import {Text, View, Image, TextInput, Button, Alert, TouchableOpacity} from 'react-native';
+import {styles} from "../styles/common";
 
 export default class ForgottenPassword extends Component {
 
@@ -11,19 +12,41 @@ export default class ForgottenPassword extends Component {
         headerTintColor: '#FFF',
     };
 
+    state = {
+        email: "",
+    };
+
     render() {
         return (
             <View style={styles.container}>
-                <Text style={{color:"#FFF"}}>a Password</Text>
+                <View style={styles.logoContainer}>
+                    <Image style={styles.logo} source={require("../../assets/timetable-logo.png")}/>
+                    <Text style={styles.title}>The Social Timetable App For You and Your Friends</Text>
+                </View>
+
+                <View style={styles.formContainer}>
+
+                    <TextInput
+                        onChangeText={(value) => this.setState({email: value})}
+                        placeholder={"Email"}
+                        placeholderTextColor={"white"}
+                        keyboardType={"email-address"}
+                        autoCapitalize={"none"}
+                        autoCorrect={false}
+                        style={styles.input}
+                        onSubmitEditing={this.submit}
+                        blurOnSubmit={false}
+                        underlineColorAndroid={"rgba(0,0,0,0)"}
+                    />
+
+                    <Button title={"Submit"} onPress={this.submit} color={"#FFB039"}/>
+                </View>
             </View>
         );
     }
+
+    submit() {
+
+    }
 }
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: "#FF9800"
-    },
-
-});
