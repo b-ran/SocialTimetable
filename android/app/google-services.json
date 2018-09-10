@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "453223642924",
+    "firebase_url": "https://timetable-6f3af.firebaseio.com",
+    "project_id": "timetable-6f3af",
+    "storage_bucket": "timetable-6f3af.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:453223642924:android:935c689c0e4a1d25",
+        "android_client_info": {
+          "package_name": "com.socialtimetable"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "453223642924-daltqpqiob8injg70qjpnve8rb47jjgi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDbdGeGgn7EouHnSzeOZp1wQa-M3nDp5VM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
