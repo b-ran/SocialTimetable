@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {StyleSheet, Text, View, Image, TextInput, Button, Alert, TouchableOpacity} from 'react-native';
 import ForgottenPassword from "./ForgottenPassword";
 import {styles} from "../styles/common";
+import {User} from "../model/User";
 
 export default class Login extends Component {
 
@@ -21,7 +22,7 @@ export default class Login extends Component {
 
     login = () => {
         const { email, password } = this.state;
-        Alert.alert(email);
+        User.login(email, password);
     };
 
     render() {
