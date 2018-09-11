@@ -8,9 +8,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:453223642924:android:935c689c0e4a1d25",
+        "mobilesdk_app_id": "1:453223642924:android:d2f168fd2d6d81a8",
         "android_client_info": {
-          "package_name": "com.socialtimetable"
+          "package_name": "com.brandonscotthill.socialtimetable"
         }
       },
       "oauth_client": [

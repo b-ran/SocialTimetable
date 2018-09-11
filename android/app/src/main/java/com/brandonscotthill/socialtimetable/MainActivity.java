@@ -1,4 +1,4 @@
-package com.socialtimetable;
+package com.brandonscotthill.socialtimetable;
 
 import com.facebook.react.ReactActivity;
 
