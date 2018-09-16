@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Text, View, Image, TextInput, Button, Alert, TouchableOpacity, ScrollView} from 'react-native';
 import {styles} from "../styles/common";
+import {User} from "../model/User";
 
 export default class Register extends Component {
 
@@ -22,7 +23,7 @@ export default class Register extends Component {
 
     render() {
         return (
-            <ScrollView resetScrollToCoords={{ x: 0, y: 0 }} contentContainerStyle={styles.container}>
+            <ScrollView resetScrollToCoords={{x: 0, y: 0}} contentContainerStyle={styles.container}>
                 <View style={styles.logoContainer}>
                     <Image style={styles.logo} source={require("../../assets/timetable-logo.png")}/>
                     <Text style={styles.title}>The Social Timetable App For You and Your Friends</Text>
@@ -32,7 +33,7 @@ export default class Register extends Component {
 
                     <TextInput
                         onChangeText={(value) => this.setState({firstName: value})}
-                        returnKeyType = {"next"}
+                        returnKeyType={"next"}
                         placeholder={"First Name"}
                         placeholderTextColor={"white"}
                         autoCapitalize={"words"}
@@ -40,12 +41,14 @@ export default class Register extends Component {
                         style={styles.input}
                         blurOnSubmit={false}
                         underlineColorAndroid={"rgba(0,0,0,0)"}
-                        onSubmitEditing={() => { this.lastNameInput.focus(); }}
+                        onSubmitEditing={() => {
+                            this.lastNameInput.focus();
+                        }}
                     />
 
                     <TextInput
                         onChangeText={(value) => this.setState({lastName: value})}
-                        returnKeyType = {"next"}
+                        returnKeyType={"next"}
                         placeholder={"Last Name"}
                         placeholderTextColor={"white"}
                         autoCapitalize={"words"}
@@ -53,13 +56,17 @@ export default class Register extends Component {
                         style={styles.input}
                         blurOnSubmit={false}
                         underlineColorAndroid={"rgba(0,0,0,0)"}
-                        ref={(input) => { this.lastNameInput = input; }}
-                        onSubmitEditing={() => { this.emailInput.focus(); }}
+                        ref={(input) => {
+                            this.lastNameInput = input;
+                        }}
+                        onSubmitEditing={() => {
+                            this.emailInput.focus();
+                        }}
                     />
 
                     <TextInput
                         onChangeText={(value) => this.setState({email: value})}
-                        returnKeyType = {"next"}
+                        returnKeyType={"next"}
                         placeholder={"Email"}
                         placeholderTextColor={"white"}
                         keyboardType={"email-address"}
@@ -68,13 +75,17 @@ export default class Register extends Component {
                         style={styles.input}
                         blurOnSubmit={false}
                         underlineColorAndroid={"rgba(0,0,0,0)"}
-                        ref={(input) => { this.emailInput = input; }}
-                        onSubmitEditing={() => { this.passwordInput.focus(); }}
+                        ref={(input) => {
+                            this.emailInput = input;
+                        }}
+                        onSubmitEditing={() => {
+                            this.passwordInput.focus();
+                        }}
                     />
 
                     <TextInput
                         onChangeText={(value) => this.setState({password: value})}
-                        returnKeyType = {"next"}
+                        returnKeyType={"next"}
                         placeholder={"Password"}
                         placeholderTextColor={"white"}
                         secureTextEntry={true}
@@ -83,8 +94,12 @@ export default class Register extends Component {
                         style={styles.input}
                         blurOnSubmit={false}
                         underlineColorAndroid={"rgba(0,0,0,0)"}
-                        ref={(input) => { this.passwordInput = input; }}
-                        onSubmitEditing={() => { this.confimPasswordInput.focus(); }}
+                        ref={(input) => {
+                            this.passwordInput = input;
+                        }}
+                        onSubmitEditing={() => {
+                            this.confimPasswordInput.focus();
+                        }}
                     />
 
                     <TextInput
@@ -98,7 +113,9 @@ export default class Register extends Component {
                         onSubmitEditing={this.submit}
                         blurOnSubmit={false}
                         underlineColorAndroid={"rgba(0,0,0,0)"}
-                        ref={(input) => { this.confimPasswordInput = input; }}
+                        ref={(input) => {
+                            this.confimPasswordInput = input;
+                        }}
                     />
 
 
@@ -108,8 +125,11 @@ export default class Register extends Component {
         );
     }
 
-    submit() {
+    submit = () => {
+        const {firstName, lastName, email, password, confirmPassword} = this.state;
+        User.register(firstName, lastName, email, password);
+        this.props.navigation.navigate("Login");
+    };
 
-    }
 }
 
