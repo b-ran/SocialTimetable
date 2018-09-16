@@ -10,6 +10,9 @@ export const styles = StyleSheet.create({
         height: 100
 
     },
+    header: {
+        backgroundColor: "#FFB039"
+    },
     title: {
         color: "#FFF",
         marginTop: 10,
