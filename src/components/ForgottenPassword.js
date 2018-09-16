@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Text, View, Image, TextInput, Button, Alert, TouchableOpacity} from 'react-native';
 import {styles} from "../styles/common";
+import {User} from "../model/User";
 
 export default class ForgottenPassword extends Component {
 
@@ -45,8 +46,9 @@ export default class ForgottenPassword extends Component {
         );
     }
 
-    submit() {
-
-    }
+    submit = () => {
+        const {email} = this.state;
+        User.sendPasswordResetEmail(email);
+    };
 }
 
