@@ -6,6 +6,7 @@ import Register from "./src/components/Register";
 import firebase from "firebase"
 import WeekView from "./src/components/WeekView";
 import Menu from "./src/components/Menu";
+import { Root } from "native-base";
 
 type Props = {};
 export default class App extends Component<Props> {
@@ -26,7 +27,10 @@ export default class App extends Component<Props> {
 
     render() {
         return (
-            <StackNav/>
+            <Root>
+                <StackNav/>
+            </Root>
+
         );
     }
 }
