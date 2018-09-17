@@ -1,33 +1,42 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, View, Image, TextInput, Button, Alert, TouchableOpacity} from 'react-native';
-import {styles} from "../styles/common";
+import {Container, Header, Left, Body, Right, Icon, Button, Title, Drawer} from "native-base"
+import {Text, View, Image, TextInput, Alert, TouchableOpacity} from 'react-native';
+import {styles, navigationOptions} from "../styles/common";
 import {User} from "../model/User";
 
 export default class Login extends Component {
 
-    static navigationOptions = {
-        title: "Login",
-        headerStyle: {
-            backgroundColor: "#FFB039",
-        },
-        headerTintColor: '#FFF',
-    };
+    static navigationOptions = navigationOptions;
 
     state = {
         email: "",
         password: "",
     };
 
-    signIn = () => {
-        console.log("signIn");
+     signIn = () => {
+
         const {email, password} = this.state;
-        User.signIn(email, password);
-        this.props.navigation.navigate("WeekView");
+        User.signIn(email, password).then(() => {
+            console.log("signIn");
+            this.props.navigation.navigate("WeekView");
+        });
     };
 
     render() {
         return (
-            <View style={styles.container}>
+            <Container style={styles.container}>
+
+                <Header style={styles.header}>
+                    <Left>
+                        <Button transparent onPress={() => this.props.navigation.goBack()}>
+                            <Icon name="arrow-back"/>
+                        </Button>
+                    </Left>
+                    <Body>
+                    <Title>Login</Title>
+                    </Body>
+                </Header>
+
 
                 <View style={styles.logoContainer}>
                     <Image style={styles.logo} source={require("../../assets/timetable-logo.png")}/>
@@ -66,7 +75,11 @@ export default class Login extends Component {
                         underlineColorAndroid={"rgba(0,0,0,0)"}
                     />
 
-                    <Button title={"Login"} onPress={this.signIn} color={"#FFB039"}/>
+
+                    <Button block onPress={this.signIn} style={styles.button}>
+                        <Text style={{color: "#FFF"}}>Login</Text>
+                    </Button>
+
 
                     <View style={styles.subButtonsContainer}>
                         <TouchableOpacity onPress={() => this.props.navigation.navigate("ForgottenPassword")}
@@ -81,7 +94,7 @@ export default class Login extends Component {
 
                 </View>
 
-            </View>
+            </Container>
 
         );
     }
