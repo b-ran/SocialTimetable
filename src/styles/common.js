@@ -1,5 +1,9 @@
 import {StyleSheet} from "react-native";
 
+export const navigationOptions = {
+    header: null
+};
+
 export const styles = StyleSheet.create({
     container: {
         flexGrow: 1,
@@ -39,6 +43,10 @@ export const styles = StyleSheet.create({
         flexGrow: 1,
         justifyContent: "center",
         paddingTop: 10,
+    },
+    button: {
+      backgroundColor: "#FFB039",
+      height: 40
     },
 
 });
