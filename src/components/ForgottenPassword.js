@@ -1,17 +1,12 @@
 import React, {Component} from 'react';
-import {Text, View, Image, TextInput, Button, Alert, TouchableOpacity} from 'react-native';
-import {styles} from "../styles/common";
+import {Text, View, Image, TextInput, Alert, TouchableOpacity} from 'react-native';
+import {Header, Left, Body, Right, Icon, Button, Title} from "native-base"
+import {navigationOptions, styles} from "../styles/common";
 import {User} from "../model/User";
 
 export default class ForgottenPassword extends Component {
 
-    static navigationOptions = {
-        title: "Forgotten Password",
-        headerStyle: {
-            backgroundColor: "#FFB039",
-        },
-        headerTintColor: '#FFF',
-    };
+    static navigationOptions = navigationOptions;
 
     state = {
         email: "",
@@ -19,7 +14,19 @@ export default class ForgottenPassword extends Component {
 
     render() {
         return (
-            <View style={styles.container}>
+            <Container style={styles.container}>
+
+                <Header style={styles.header}>
+                    <Left>
+                        <Button transparent onPress={() => this.props.navigation.goBack()}>
+                            <Icon name="arrow-back"/>
+                        </Button>
+                    </Left>
+                    <Body>
+                    <Title>Forgotten Password</Title>
+                    </Body>
+                </Header>
+
                 <View style={styles.logoContainer}>
                     <Image style={styles.logo} source={require("../../assets/timetable-logo.png")}/>
                     <Text style={styles.title}>The Social Timetable App For You and Your Friends</Text>
@@ -42,7 +49,7 @@ export default class ForgottenPassword extends Component {
 
                     <Button title={"Submit"} onPress={this.submit} color={"#FFB039"}/>
                 </View>
-            </View>
+            </Container>
         );
     }
 
