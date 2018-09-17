@@ -1,13 +1,11 @@
 import {Container, Header, Left, Body, Right, Button, Icon, Title, Drawer} from "native-base"
 import React, {Component} from "react";
 import SideBar from "./Menu";
-import {styles} from "../styles/common";
+import {styles, navigationOptions} from "../styles/common";
 
 export default class WeekView extends Component {
 
-    static navigationOptions = {
-        header: null
-    };
+    static navigationOptions = navigationOptions;
 
     closeDrawer() {
         this._drawer._root.close();
