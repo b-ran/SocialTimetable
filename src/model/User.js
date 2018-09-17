@@ -10,13 +10,13 @@ export class User {
         password: "",
     };
 
-    static signIn(email, password) {
-        AccountHandler.attemptSignIn(email, password);
+    static async signIn(email, password) {
+       await AccountHandler.attemptSignIn(email, password);
     }
 
     static signOut() {
-        AccountHandler.attemptSignOut();
-        state.clear();
+        //AccountHandler.attemptSignOut();
+        this.resetState();
     }
 
     static sendPasswordResetEmail(email) {
@@ -41,7 +41,16 @@ export class User {
 
     }
 
-    static online() {
-        return !this.state.isEmpty();
+    static isOnline() {
+        let state = this.state;
+        return !(state.uid == null || state.firstName === "" || state.lastName === "" || state.email === "" || state.password === "");
+    }
+
+    static resetState() {
+        this.state.uid = null;
+        this.state.firstName = "";
+        this.state.lastName = "";
+        this.state.email = "";
+        this.state.password = "";
     }
 }
