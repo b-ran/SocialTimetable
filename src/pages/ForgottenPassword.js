@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import {Text, View, Image, TextInput, Alert, TouchableOpacity} from 'react-native';
-import {Header, Left, Body, Right, Icon, Button, Title} from "native-base"
+import {Text, View, Image, TextInput} from 'react-native';
+import {Header, Left, Body, Icon, Button, Title, Container} from "native-base"
 import {navigationOptions, styles} from "../styles/common";
 import {User} from "../model/User";
 
@@ -47,7 +47,9 @@ export default class ForgottenPassword extends Component {
                         underlineColorAndroid={"rgba(0,0,0,0)"}
                     />
 
-                    <Button title={"Submit"} onPress={this.submit} color={"#FFB039"}/>
+                    <Button block onPress={this.submit} style={styles.button}>
+                        <Text style={{color: "#FFF"}}>Submit</Text>
+                    </Button>
                 </View>
             </Container>
         );

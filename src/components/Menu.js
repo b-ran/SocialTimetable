@@ -72,7 +72,7 @@ export default class Menu extends Component {
             <Content style={styles.content}>
 
                 {this.test()}
-                {this.friendButtons(true)}
+                {this.friendButtons(User.isOnline())}
 
                 <Button transparent iconLeft>
                     <Icon style={styles.button} name='md-information-circle'/>

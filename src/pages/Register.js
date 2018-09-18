@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import {Text, View, Image, TextInput, Alert, TouchableOpacity, ScrollView} from 'react-native';
-import {Header, Left, Body, Right, Icon, Button, Title} from "native-base"
+import {Text, View, Image, TextInput, ScrollView} from 'react-native';
+import {Header, Left, Body, Icon, Button, Title} from "native-base"
 import {navigationOptions, styles} from "../styles/common";
 import {User} from "../model/User";
 
@@ -126,7 +126,10 @@ export default class Register extends Component {
                     />
 
 
-                    <Button title={"Submit"} onPress={this.submit} color={"#FFB039"}/>
+                    <Button block onPress={this.submit} style={styles.button}>
+                        <Text style={{color: "#FFF"}}>Submit</Text>
+                    </Button>
+
                 </View>
             </ScrollView>
         );

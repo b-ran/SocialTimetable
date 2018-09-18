@@ -1,6 +1,6 @@
 import {Container, Header, Left, Body, Right, Button, Icon, Title, Drawer} from "native-base"
 import React, {Component} from "react";
-import SideBar from "./Menu";
+import SideBar from "../components/Menu";
 import {styles, navigationOptions} from "../styles/common";
 
 export default class WeekView extends Component {

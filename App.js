@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import {createStackNavigator} from "react-navigation";
-import Login from "./src/components/Login";
-import ForgottenPassword from "./src/components/ForgottenPassword";
-import Register from "./src/components/Register";
+import Login from "./src/pages/Login";
+import ForgottenPassword from "./src/pages/ForgottenPassword";
+import Register from "./src/pages/Register";
 import firebase from "firebase"
-import WeekView from "./src/components/WeekView";
+import WeekView from "./src/pages/WeekView";
 import Menu from "./src/components/Menu";
 import { Root } from "native-base";
 
