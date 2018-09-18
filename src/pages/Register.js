@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import {Text, View, Image, TextInput, ScrollView} from 'react-native';
-import {Header, Left, Body, Icon, Button, Title} from "native-base"
+import {Header, Left, Body, Icon, Button, Title, Container} from "native-base"
 import {navigationOptions, styles} from "../styles/common";
 import {User} from "../model/User";
+import {createHeaderButton} from "../components/Header";
 
 export default class Register extends Component {
 
@@ -20,16 +21,7 @@ export default class Register extends Component {
         return (
             <ScrollView resetScrollToCoords={{x: 0, y: 0}} contentContainerStyle={styles.container}>
 
-                <Header style={styles.header}>
-                    <Left>
-                        <Button transparent onPress={() => this.props.navigation.goBack()}>
-                            <Icon name="arrow-back"/>
-                        </Button>
-                    </Left>
-                    <Body>
-                    <Title>Register</Title>
-                    </Body>
-                </Header>
+                {createHeaderButton("Register", ()=> this.props.navigation.goBack())}
 
                 <View style={styles.logoContainer}>
                     <Image style={styles.logo} source={require("../../assets/timetable-logo.png")}/>

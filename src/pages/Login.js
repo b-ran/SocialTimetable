@@ -3,6 +3,7 @@ import {Container, Header, Left, Body, Right, Icon, Button, Title, Drawer} from 
 import {Text, View, Image, TextInput, Alert, TouchableOpacity} from 'react-native';
 import {styles, navigationOptions} from "../styles/common";
 import {User} from "../model/User";
+import {createHeaderButton} from "../components/Header";
 
 export default class Login extends Component {
 
@@ -22,20 +23,12 @@ export default class Login extends Component {
         });
     };
 
+
     render() {
         return (
             <Container style={styles.container}>
 
-                <Header style={styles.header}>
-                    <Left>
-                        <Button transparent onPress={() => this.props.navigation.goBack()}>
-                            <Icon name="arrow-back"/>
-                        </Button>
-                    </Left>
-                    <Body>
-                    <Title>Login</Title>
-                    </Body>
-                </Header>
+                {createHeaderButton("Login", ()=> this.props.navigation.goBack())}
 
 
                 <View style={styles.logoContainer}>

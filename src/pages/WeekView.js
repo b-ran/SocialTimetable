@@ -2,6 +2,7 @@ import {Container, Header, Left, Body, Right, Button, Icon, Title, Drawer} from 
 import React, {Component} from "react";
 import SideBar from "../components/Menu";
 import {styles, navigationOptions} from "../styles/common";
+import {createHeaderButton} from "../components/Header";
 
 export default class WeekView extends Component {
 
@@ -25,17 +26,11 @@ export default class WeekView extends Component {
                 onClose={() => this.closeDrawer()}>
 
                 <Container>
-                    <Header style={styles.header}>
-                        <Left>
-                            <Button transparent onPress={() => this.openDrawer()}>
-                                <Icon name="menu"/>
-                            </Button>
-                        </Left>
-                        <Body>
-                        <Title>Week View</Title>
-                        </Body>
-                    </Header>
+                    {createHeaderButton("Week View", () => this.openDrawer(), "menu")}
                 </Container>
+
+
+
             </Drawer>
         );
     }

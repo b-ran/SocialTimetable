@@ -7,6 +7,10 @@ import firebase from "firebase"
 import WeekView from "./src/pages/WeekView";
 import Menu from "./src/components/Menu";
 import { Root } from "native-base";
+import AddFriends from "./src/pages/AddFriends";
+import Settings from "./src/pages/Settings";
+import AllFriends from "./src/pages/AllFriends";
+import About from "./src/pages/About";
 
 type Props = {};
 export default class App extends Component<Props> {
@@ -41,6 +45,10 @@ const StackNav = createStackNavigator({
     ForgottenPassword: ForgottenPassword,
     Register: Register,
     Menu: Menu,
+    AddFriends: AddFriends,
+    AllFriends: AllFriends,
+    Settings: Settings,
+    About: About
 });
 
 

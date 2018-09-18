@@ -3,6 +3,7 @@ import {Text, View, Image, TextInput} from 'react-native';
 import {Header, Left, Body, Icon, Button, Title, Container} from "native-base"
 import {navigationOptions, styles} from "../styles/common";
 import {User} from "../model/User";
+import {createHeaderButton} from "../components/Header";
 
 export default class ForgottenPassword extends Component {
 
@@ -16,16 +17,7 @@ export default class ForgottenPassword extends Component {
         return (
             <Container style={styles.container}>
 
-                <Header style={styles.header}>
-                    <Left>
-                        <Button transparent onPress={() => this.props.navigation.goBack()}>
-                            <Icon name="arrow-back"/>
-                        </Button>
-                    </Left>
-                    <Body>
-                    <Title>Forgotten Password</Title>
-                    </Body>
-                </Header>
+                {createHeaderButton("Forgotten Password", ()=> this.props.navigation.goBack())}
 
                 <View style={styles.logoContainer}>
                     <Image style={styles.logo} source={require("../../assets/timetable-logo.png")}/>
