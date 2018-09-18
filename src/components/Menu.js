@@ -30,12 +30,12 @@ export default class Menu extends Component {
         if (isOnline) {
             return (
                 <Content>
-                    <Button transparent iconLeft>
+                    <Button transparent iconLeft onPress={() => this.props.navigation.navigate("AddFriends")}>
                         <Icon style={styles.button} name='md-person-add'/>
                         <Text style={styles.button}>Add Friends</Text>
                     </Button>
 
-                    <Button transparent iconLeft>
+                    <Button transparent iconLeft onPress={() => this.props.navigation.navigate("AllFriends")}>
                         <Icon style={styles.button} name='md-people'/>
                         <Text style={styles.button}>All Friends</Text>
                     </Button>
@@ -72,13 +72,13 @@ export default class Menu extends Component {
             <Content style={styles.content}>
 
                 {this.test()}
-                {this.friendButtons(User.isOnline())}
+                {this.friendButtons(true)}
 
-                <Button transparent iconLeft>
+                <Button transparent iconLeft onPress={() => this.props.navigation.navigate("About")}>
                     <Icon style={styles.button} name='md-information-circle'/>
                     <Text style={styles.button}>About</Text>
                 </Button>
-                <Button transparent iconLeft>
+                <Button transparent iconLeft onPress={() => this.props.navigation.navigate("Settings")}>
                     <Icon style={styles.button} name='cog'/>
                     <Text style={styles.button}>Settings</Text>
                 </Button>
