@@ -14,7 +14,6 @@ export default class Menu extends Component {
             "willFocus",
             payload => {
                 this.forceUpdate();
-                console.log("didFocus");
             }
         )
 
@@ -72,7 +71,7 @@ export default class Menu extends Component {
             <Content style={styles.content}>
 
                 {this.test()}
-                {this.friendButtons(true)}
+                {this.friendButtons(User.isOnline())}
 
                 <Button transparent iconLeft onPress={() => this.props.navigation.navigate("About")}>
                     <Icon style={styles.button} name='md-information-circle'/>
