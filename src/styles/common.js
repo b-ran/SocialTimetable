@@ -48,5 +48,12 @@ export const styles = StyleSheet.create({
       backgroundColor: "#FFB039",
       height: 40
     },
+    text: {
+        color: "#FF9800"
+    },
+    subtext: {
+        color: "#8e9093",
+        fontSize: 12,
+    }
 
 });
