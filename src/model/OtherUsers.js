@@ -8,32 +8,37 @@ export class OtherUsers {
     static users = [];
 
     static findUsers(search) {
+        if (!User.isOnline()) return;
+        console.log(search);
         return new Promise((resolve) => {
-            this._populateUsers().then(() => {
-                this.users = this.startUsers;
-                resolve();
+            this.users = [];
+            this.users = this.startUsers;
+            this._filterUsers();
+
+            this.users = this.users.filter((user) => {
+                let fullName: string = (user.firstName + " " + user.lastName).toLowerCase();
+                return ((user.uid.substring(0, search.length) === search ||
+                    fullName.substring(0, search.length) === search.toLowerCase()));
             });
+            resolve();
         });
 
 
-
-
-        // await this.users.filter((user) => {
-        //    return user.uid !== User.state.uid;
-        // });
-
-        // await this.users = this.users.filter((user) => {
-        //     let fullName: string = (user.firstName + " " + user.lastName).toLowerCase();
-        //     return ((user.uid.substring(0,search.length) === search ||
-        //         fullName.substring(0,search.length) === search.toLowerCase()));
-        // });
     }
 
-    static _populateUsers() {
+    static _filterUsers() {
+        this.users = this.users.filter((user) => {
+            return user.uid !== User.state.uid;
+        });
+    }
+
+    static populateUsers() {
         return new Promise((resolve) => {
             if (this.startUsers.length !== 0) return;
             UsersHandler.attemptToGetUsers().then(() => {
                 this.startUsers = UsersHandler._users;
+                this.users = UsersHandler._users;
+                this._filterUsers();
                 resolve();
             });
         });

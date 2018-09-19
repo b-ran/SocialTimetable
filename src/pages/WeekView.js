@@ -8,6 +8,10 @@ export default class WeekView extends Component {
 
     static navigationOptions = navigationOptions;
 
+    componentDidMount() {
+
+    }
+
     closeDrawer() {
         this._drawer._root.close();
     };
