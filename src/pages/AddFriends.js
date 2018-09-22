@@ -1,9 +1,10 @@
 import React, {Component} from "react";
-import {Button, Container, Header, Icon, Input, Item, Left, Right, Text, List, ListItem} from "native-base";
+import {Button, Container, Header, Icon, Input, Item, Left, Content, List, ListItem, Text, Right} from "native-base";
 
 import {navigationOptions, styles} from "../styles/common";
 import {OtherUsers} from "../model/OtherUsers";
 import {Requests} from "../model/Requests";
+import {Friends} from "../model/Friends";
 
 export default class AddFriends extends Component {
 
@@ -25,40 +26,62 @@ export default class AddFriends extends Component {
                     </Item>
                 </Header>
 
-                {this.drawUsers()}
+                <List dataArray={OtherUsers.users.slice(0, 5)} renderRow={(item) =>
+                    <ListItem button onPress={() => this.request(item)}>
+                        <Left>
+                            <Text style={styles.subtext}># {item.uid.substring(0, 5)} </Text>
+                            <Text style={styles.text}>{item.firstName + " " + item.lastName}</Text>
+                        </Left>
+                        <Right>
+                            <Icon name={"add"}/>
+                        </Right>
+                    </ListItem>
+                } renderHeader={() =>
+                    <ListItem itemHeader first>
+                    <Text>Users</Text>
+                    </ListItem>}>
+                </List>
+
+                <List dataArray={Requests.data} renderRow={(item) =>
+                    <ListItem button onPress={() => this.acceptRequest(item)}>
+                        <Left>
+                            <Text style={styles.subtext}># {item.uid.substring(0, 5)} </Text>
+                            <Text style={styles.text}>{item.firstName + " " + item.lastName}</Text>
+                        </Left>
+                        <Right>
+                            <Icon name={"add"}/>
+                        </Right>
+                    </ListItem>
+                } renderHeader={() =>
+                    <ListItem itemHeader first>
+                        <Text>Friend Requests</Text>
+                    </ListItem>}>
+                </List>
+
 
             </Container>
         );
     }
 
-    drawUsers() {
-        return (
-            <List dataArray={OtherUsers.users}
-                  renderRow={(item) =>
-                      <ListItem button onPress={() => Requests.makeRequest(item)}>
-                          <Left>
-                              <Text style={styles.subtext}># {item.uid.substring(0, 5)} </Text>
-                              <Text style={styles.text}>{item.firstName + " " + item.lastName}</Text>
-                          </Left>
-                          <Right>
-                              <Icon name="add"/>
-                          </Right>
-                      </ListItem>
-                  }
-                  renderHeader={() =>
-                      <ListItem itemHeader first>
-                          <Text>Users</Text>
-                      </ListItem>
-                  }
-            >
-
-            </List>
-        );
-    }
 
     input(value) {
         OtherUsers.findUsers(value).then(() => {
             this.forceUpdate();
         });
     }
+
+    request(item) {
+        Requests.makeRequest(item).then(() => {
+            this.forceUpdate();
+        })
+    }
+
+    acceptRequest(item) {
+        Requests.acceptRequest(item).then(() => {
+            this.forceUpdate();
+            Friends.populateFriends();
+        })
+    }
+
+
 }
