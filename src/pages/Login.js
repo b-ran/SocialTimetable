@@ -4,7 +4,6 @@ import {Text, View, Image, TextInput, Alert, TouchableOpacity} from 'react-nativ
 import {styles, navigationOptions} from "../styles/common";
 import {User} from "../model/User";
 import {createHeaderButton} from "../components/Header";
-import {OtherUsers} from "../model/OtherUsers";
 
 export default class Login extends Component {
 
@@ -19,11 +18,10 @@ export default class Login extends Component {
         const {email, password} = this.state;
         User.signIn(email, password).then(() => {
             console.log("signIn");
-            OtherUsers.populateUsers();
+            User.populateAll();
             this.props.navigation.navigate("WeekView");
         });
     };
-
 
     render() {
         return (

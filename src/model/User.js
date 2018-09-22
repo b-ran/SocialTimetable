@@ -1,4 +1,8 @@
 import {AccountHandler} from "../external/AccountHandler";
+import {OtherUsers} from "./OtherUsers";
+import {Requests} from "./Requests";
+import {Requested} from "./Requested";
+import {Friends} from "./Friends";
 
 export class User {
 
@@ -39,6 +43,14 @@ export class User {
         this.state.email = newUserState.email;
         this.state.password = newUserState.password;
 
+    }
+
+    static async populateAll() {
+        await OtherUsers.populateUsers();
+        await Requests.populateRequests();
+        await Requested.populateRequested();
+        await Friends.populateFriends();
+        await OtherUsers.filterUsers();
     }
 
     static isOnline() {
