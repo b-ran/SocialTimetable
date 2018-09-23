@@ -3,6 +3,7 @@ import {OtherUsers} from "./OtherUsers";
 import {Requests} from "./Requests";
 import {Requested} from "./Requested";
 import {Friends} from "./Friends";
+import {LessonHandler} from "../external/LessonHandler";
 
 export class User {
 
@@ -12,6 +13,7 @@ export class User {
         lastName: "",
         email: "",
         password: "",
+        lessons: [],
     };
 
     static async signIn(email, password) {
@@ -32,7 +34,6 @@ export class User {
         this.state.lastName = lastName;
         this.state.email = email;
         this.state.password = password;
-
         AccountHandler.attemptRegistration(email, password);
     }
 
@@ -42,7 +43,8 @@ export class User {
         this.state.lastName = newUserState.lastName;
         this.state.email = newUserState.email;
         this.state.password = newUserState.password;
-
+        this.state.lessons = newUserState.lessons;
+        if (this.state.lessons === undefined) this.state.lessons = [];
     }
 
     static async populateAll() {
@@ -64,5 +66,11 @@ export class User {
         this.state.lastName = "";
         this.state.email = "";
         this.state.password = "";
+    }
+
+    static addLesson(lesson) {
+        console.log(this.state);
+        this.state.lessons.push(lesson);
+        console.log(this.state);
     }
 }
