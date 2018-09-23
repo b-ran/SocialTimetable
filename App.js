@@ -11,6 +11,8 @@ import AddFriends from "./src/pages/AddFriends";
 import Settings from "./src/pages/Settings";
 import AllFriends from "./src/pages/AllFriends";
 import About from "./src/pages/About";
+import FriendRequests from "./src/pages/FriendRequests";
+import AddLesson from "./src/pages/AddLesson";
 
 type Props = {};
 export default class App extends Component<Props> {
@@ -46,7 +48,9 @@ const StackNav = createStackNavigator({
     Register: Register,
     Menu: Menu,
     AddFriends: AddFriends,
+    FriendRequests: FriendRequests,
     AllFriends: AllFriends,
+    AddLesson: AddLesson,
     Settings: Settings,
     About: About
 });
