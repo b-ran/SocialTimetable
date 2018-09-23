@@ -18,9 +18,9 @@ export class AccountHandler {
                         lastName: rawUserData.lastName,
                         email: email,
                         password: password,
+                        lessons: rawUserData.lessons,
                     };
                     User.updateState(newUserState);
-                    console.log("Updated Logged User");
                     resolve();
                 });
             });
