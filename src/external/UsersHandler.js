@@ -5,44 +5,55 @@ import {OtherUsers} from "../model/OtherUsers";
 export class UsersHandler {
 
     static users = [];
+    static friends = [];
+    static requests = [];
+    static requested = [];
 
     static async attemptToGetUsers() {
         await this.attemptToGetListAtRef("user", "uid").then((response) => {
+            this.users = [];
             this.users = response;
         });
     }
 
     static async attemptToGetRequests() {
         await this.attemptToGetListAtRef("requests/" + User.state.uid, "sender").then((response) => {
-            this.users = this.__findUsersFromUid(response);
+            this.requests = [];
+            this.requests = this.__findUsersFromUid(response);
         });
+
     }
 
     static async attemptToGetRequested() {
-        await this.attemptToGetListAtRef("requested/" + User.state.uid, "receiver").then((response) => {
-            this.users = this.__findUsersFromUid(response);
+        await this.attemptToGetListAtRef("requested/" + User.state.uid, "receiver").then(async (response) => {
+            this.requested = await [];
+            this.requested = await this.__findUsersFromUid(response);
         });
     }
 
     static async attemptToGetFriends() {
-        await this.attemptToGetListAtRef("user/" + User.state.uid + "/friends", "friend").then((response) => {
-            this.users = this.__findUsersFromUid(response);
+        await this.attemptToGetListAtRef("user/" + User.state.uid + "/friends", "friend").then(async (response) => {
+
+            this.friends = await [];
+            this.friends = await this.__findUsersFromUid(response);
+
         });
     }
 
     static __findUsersFromUid(uidList) {
         let foundUsers = [];
-        for (let i in OtherUsers.startUsers) {
-            let user = OtherUsers.startUsers[i];
-            for (let j in uidList) {
-                let uid = uidList[j];
+        for (let i in uidList) {
+            let uid = uidList[i];
+            for (let j in OtherUsers.startUsers) {
+                let user = OtherUsers.startUsers[j];
                 for (let key in uid) {
                     if (uid[key] === user.uid) {
-                        foundUsers.push(user)
+                        foundUsers.push(user);
                     }
                 }
             }
         }
+
         return foundUsers;
     }
 
@@ -58,5 +69,6 @@ export class UsersHandler {
             })
         })
     }
+
 
 }
