@@ -10,7 +10,7 @@ export default class Settings extends Component {
 
     render() {
         return(
-            <Container style={styles.container}>
+            <Container>
                 {createHeaderButton("Settings", ()=> this.props.navigation.goBack())}
             </Container>
         );
