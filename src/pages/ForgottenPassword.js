@@ -21,7 +21,7 @@ export default class ForgottenPassword extends Component {
 
                 <View style={styles.logoContainer}>
                     <Image style={styles.logo} source={require("../../assets/timetable-logo.png")}/>
-                    <Text style={styles.title}>The Social Timetable App For You and Your Friends</Text>
+                    <Text style={styles.logoTitle}>The Social Timetable App For You and Your Friends</Text>
                 </View>
 
                 <View style={styles.formContainer}>

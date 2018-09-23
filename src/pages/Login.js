@@ -17,22 +17,20 @@ export default class Login extends Component {
      signIn = () => {
         const {email, password} = this.state;
         User.signIn(email, password).then(() => {
-            console.log("signIn");
-            User.populateAll();
             this.props.navigation.navigate("WeekView");
+            User.populateAll();
         });
     };
 
     render() {
         return (
-            <Container style={styles.container}>
+            <Container>
 
                 {createHeaderButton("Login", ()=> this.props.navigation.goBack())}
 
-
                 <View style={styles.logoContainer}>
                     <Image style={styles.logo} source={require("../../assets/timetable-logo.png")}/>
-                    <Text style={styles.title}>The Social Timetable App For You and Your Friends</Text>
+                    <Text style={styles.logoTitle}>The Social Timetable App For You and Your Friends</Text>
                 </View>
 
                 <View style={styles.formContainer}>
@@ -67,20 +65,18 @@ export default class Login extends Component {
                         underlineColorAndroid={"rgba(0,0,0,0)"}
                     />
 
-
                     <Button block onPress={this.signIn} style={styles.button}>
                         <Text style={{color: "#FFF"}}>Login</Text>
                     </Button>
 
-
                     <View style={styles.subButtonsContainer}>
                         <TouchableOpacity onPress={() => this.props.navigation.navigate("ForgottenPassword")}
                                           style={{marginRight: 10}}>
-                            <Text style={{color: "#FFF"}}>Forgotten Password</Text>
+                            <Text style={styles.subButtonText}>Forgotten Password</Text>
                         </TouchableOpacity>
 
                         <TouchableOpacity onPress={() => this.props.navigation.navigate("Register")}>
-                            <Text style={{color: "#FFF"}}>Register</Text>
+                            <Text style={styles.subButtonText}>Register</Text>
                         </TouchableOpacity>
                     </View>
 

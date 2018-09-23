@@ -11,7 +11,7 @@ export default class About extends Component {
     render() {
 
         return(
-            <Container style={styles.container}>
+            <Container>
                 {createHeaderButton("About", ()=> this.props.navigation.goBack())}
             </Container>
         );
