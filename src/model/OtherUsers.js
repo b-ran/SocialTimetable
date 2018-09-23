@@ -12,10 +12,7 @@ export class OtherUsers {
 
     static findUsers(search) {
         if (!User.isOnline()) return;
-        console.log(search);
         return new Promise((resolve) => {
-            this.users = [];
-            this.users = this.startUsers;
             this.filterUsers().then(() => {
                 this.users = this.users.filter((user) => {
                     let fullName: string = (user.firstName + " " + user.lastName).toLowerCase();
@@ -24,20 +21,19 @@ export class OtherUsers {
                 });
                 resolve();
             });
-
-
-
         });
     }
 
     static filterUsers() {
+        let users = this.startUsers;
         return new Promise(async (resolve) => {
-            this.users = await this.users.filter((user) => {
+            users = await users.filter((user) => {
                 return user.uid !== User.state.uid;
             });
-            this.users = await this._filterArray(this.users, Requests.data);
-            this.users = await this._filterArray(this.users, Requested.data);
-            this.users = await this._filterArray(this.users, Friends.data);
+            users = await this._filterArray(users, Requests.data);
+            users = await this._filterArray(users, Requested.data);
+            users = await this._filterArray(users, Friends.data);
+            this.users = users;
             resolve();
         });
 
@@ -46,11 +42,8 @@ export class OtherUsers {
     static populateUsers() {
         return new Promise((resolve) => {
             UsersHandler.attemptToGetUsers().then(() => {
+                this.startUsers = [];
                 this.startUsers = UsersHandler.users;
-                this.users = [];
-                this.users = this.startUsers;
-                console.log("------OtherUsers------");
-                console.log(this.users);
                 resolve();
             });
         });
@@ -58,7 +51,6 @@ export class OtherUsers {
 
 
     static _filterArray(to:any[] , from:any[]) {
-        console.log(from);
         let array = [];
         if (from.length === 0) return to;
         for (let i in to) {
@@ -74,4 +66,7 @@ export class OtherUsers {
         return array;
     }
 
+    static getStart() {
+        return this.startUsers;
+    }
 }

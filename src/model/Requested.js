@@ -8,9 +8,7 @@ export class Requested {
         return new Promise((resolve) => {
             UsersHandler.attemptToGetRequested().then(()=> {
                 this.data = [];
-                this.data = UsersHandler.users;
-                console.log("------Requested------");
-                console.log(this.data);
+                this.data = UsersHandler.requested;
                 resolve();
             });
         });

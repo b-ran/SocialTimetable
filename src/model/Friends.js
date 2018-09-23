@@ -1,4 +1,5 @@
 import {UsersHandler} from "../external/UsersHandler";
+import {OtherUsers} from "./OtherUsers";
 
 export class Friends {
 
@@ -8,9 +9,7 @@ export class Friends {
         return new Promise((resolve) => {
             UsersHandler.attemptToGetFriends().then(()=> {
                 this.data = [];
-                this.data = UsersHandler.users;
-                console.log("------Friends------");
-                console.log(this.data);
+                this.data = UsersHandler.friends;
                 resolve();
             });
         });

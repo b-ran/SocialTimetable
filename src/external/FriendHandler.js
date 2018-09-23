@@ -1,5 +1,6 @@
 import * as firebase from "firebase";
 import {User} from "../model/User"
+import {OtherUsers} from "../model/OtherUsers";
 
 export class FriendHandler {
 
@@ -9,9 +10,11 @@ export class FriendHandler {
     }
 
     static acceptRequest(targetUser) {
+        let start = OtherUsers.startUsers.length;
         firebase.database().ref(`user/${User.state.uid}`).child("friends").push({friend: targetUser.uid});
         firebase.database().ref(`user/${targetUser.uid}`).child("friends").push({friend: User.state.uid});
         this.deleteRequest(targetUser);
+        OtherUsers.startUsers = OtherUsers.startUsers.slice(0,start);
     }
 
     static deleteRequest(targetUser) {
