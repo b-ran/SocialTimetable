@@ -16,16 +16,16 @@ export class AccountHandler {
                         uid: firebase.auth().currentUser.uid,
                         firstName: rawUserData.firstName,
                         lastName: rawUserData.lastName,
+                        friends: rawJSONToArray(rawUserData.friends),
                         email: email,
                         password: password,
-                        lessons: rawUserData.lessons,
+                        lessons: rawJSONToArray(rawUserData.lessons),
                     };
                     User.updateState(newUserState);
                     resolve();
                 });
             });
         });
-
     }
 
     static async attemptSignOut() {
@@ -58,4 +58,12 @@ export class AccountHandler {
         await firebase.auth().sendPasswordResetEmail(email)
     }
 
+}
+
+function rawJSONToArray(rawData) {
+    let array = [];
+    for (let i in rawData) {
+        array.push(rawData[i]);
+    }
+    return array;
 }

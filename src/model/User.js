@@ -11,6 +11,7 @@ export class User {
         uid: null,
         firstName: "",
         lastName: "",
+        friends: [],
         email: "",
         password: "",
         lessons: [],
@@ -41,9 +42,11 @@ export class User {
         this.state.uid = newUserState.uid;
         this.state.firstName = newUserState.firstName;
         this.state.lastName = newUserState.lastName;
+        this.state.friends = newUserState.friends;
         this.state.email = newUserState.email;
         this.state.password = newUserState.password;
         this.state.lessons = newUserState.lessons;
+        if (this.state.friends === undefined) this.state.friends = [];
         if (this.state.lessons === undefined) this.state.lessons = [];
     }
 
@@ -71,6 +74,5 @@ export class User {
     static addLesson(lesson) {
         console.log(this.state);
         this.state.lessons.push(lesson);
-        console.log(this.state);
     }
 }
