@@ -1,9 +1,10 @@
-import {Container, Drawer, Content, Fab, View, Icon} from "native-base"
+import {Container, Drawer, Content, Fab, View, Icon, Text} from "native-base"
 import React, {Component} from "react";
 import SideBar from "../components/Menu";
 import {styles, navigationOptions} from "../styles/common";
 import {createHeaderButton} from "../components/Header";
 import {User} from "../model/User";
+import Timetable from "../components/Timetable";
 
 export default class WeekView extends Component {
 
@@ -28,17 +29,19 @@ export default class WeekView extends Component {
 
     render() {
         return (
+
             <Drawer
                 ref={(ref) => {
                     this._drawer = ref;
                 }}
-                content={<SideBar navigation={this.props.navigation} navigator={this.navigator} closeDrawer={()=> this.closeDrawer()}/>}
+                content={<SideBar navigation={this.props.navigation} navigator={this.navigator}
+                                  closeDrawer={() => this.closeDrawer()}/>}
                 onClose={() => this.closeDrawer()}>
 
                 <Container>
-                    {this.statusMenu()}
-                </Container>
 
+                    {this.statusMenu()}
+                    <Timetable starHour={8} endHour={22}/>
                     <Fab
                         active={true}
                         direction="up"
@@ -46,8 +49,14 @@ export default class WeekView extends Component {
                         style={styles.fab}
                         position="bottomRight"
                         onPress={() => this.props.navigation.navigate("AddLesson")}>
-                        <Icon name="add" />
+                        <Icon name="add"/>
                     </Fab>
+
+                </Container>
+
+
+
+
 
 
             </Drawer>
@@ -56,19 +65,18 @@ export default class WeekView extends Component {
 
     statusMenu() {
         if (User.isOnline()) {
-            return(
-              <Content>
-                  {createHeaderButton("Week View", () => this.openDrawer(), "menu")}
-              </Content>
+            return (
+                <Content>
+                    {createHeaderButton("Week View", () => this.openDrawer(), "menu")}
+                </Content>
             );
         }
-        return(
+        return (
             <Content>
                 {createHeaderButton("Week View", () => this.props.navigation.navigate("Login"), "menu")}
             </Content>
         );
     }
-
 
 
 }
