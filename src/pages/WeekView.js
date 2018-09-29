@@ -41,7 +41,7 @@ export default class WeekView extends Component {
                 <Container>
 
                     {this.statusMenu()}
-                    <Timetable starHour={8} endHour={22}/>
+                    <Timetable starHour={8} endHour={22} lessons={User.state.lessons}/>
                     <Fab
                         active={true}
                         direction="up"
