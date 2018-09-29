@@ -6,4 +6,5 @@ import {YellowBox} from 'react-native';
 YellowBox.ignoreWarnings(['Warning: isMounted(...) is deprecated', 'Module RCTImageLoader']);
 YellowBox.ignoreWarnings(['Setting a timer']);
 YellowBox.ignoreWarnings(['Warning: Each child in an array or iterator should have']);
+YellowBox.ignoreWarnings(['Warning: Failed child context type: Invalid child context']);
 AppRegistry.registerComponent(appName, () => App);

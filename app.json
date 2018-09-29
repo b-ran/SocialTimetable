@@ -1,4 +1,5 @@
 {
   "name": "SocialTimetable",
-  "displayName": "SocialTimetable"
+  "displayName": "SocialTimetable",
+   "expo": {"sdkVersion": "30.0.0"}
 }
