@@ -4,6 +4,7 @@ import {Container, Icon, Left, List, ListItem, Text, Right} from "native-base";
 import {navigationOptions, styles} from "../styles/common";
 import {createHeaderButton} from "../components/Header";
 import {Friends} from "../model/Friends";
+import FriendTimetable from "./FriendTimetable";
 
 export default class AllFriends extends Component {
 
@@ -37,7 +38,7 @@ export default class AllFriends extends Component {
     }
 
     openTimetable(item) {
-
+        this.props.navigation.navigate("FriendTimetable", {lessons: item.lessons, fullName: item.firstName + " " + item.lastName});
     }
 
 
