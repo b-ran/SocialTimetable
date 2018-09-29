@@ -60,7 +60,7 @@ export class AccountHandler {
 
 }
 
-function rawJSONToArray(rawData) {
+export function rawJSONToArray(rawData) {
     let array = [];
     for (let i in rawData) {
         array.push(rawData[i]);
