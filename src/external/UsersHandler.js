@@ -1,6 +1,7 @@
 import firebase from "firebase"
 import {User} from "../model/User";
 import {OtherUsers} from "../model/OtherUsers";
+import {AccountHandler, rawJSONToArray} from "./AccountHandler";
 
 export class UsersHandler {
 
@@ -48,6 +49,8 @@ export class UsersHandler {
                 let user = OtherUsers.startUsers[j];
                 for (let key in uid) {
                     if (uid[key] === user.uid) {
+                        user.friends = rawJSONToArray(user.friends);
+                        user.lessons = rawJSONToArray(user.lessons);
                         foundUsers.push(user);
                     }
                 }
