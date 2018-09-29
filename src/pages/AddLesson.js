@@ -4,10 +4,10 @@ import {Button, Container,Picker} from "native-base";
 import {navigationOptions, styles} from "../styles/common";
 import {createHeaderButton} from "../components/Header";
 import {Text, TextInput, View, TouchableOpacity, Keyboard, Image} from "react-native";
-import type {Lesson} from "../model/Lesson";
 import DateTimePicker from 'react-native-modal-datetime-picker';
 import {User} from "../model/User";
 import {LessonHandler} from "../external/LessonHandler";
+import ColorPicker from "../lib/ColorPicker";
 
 export default class AddLesson extends Component {
 
@@ -21,6 +21,8 @@ export default class AddLesson extends Component {
         day: "Monday",
         startTime: new Date("0"),
         endTime: new Date("0"),
+        colors: ["#F44336", "#E91E63", "#9C27B0", "#673AB7", "#4050B5", "#3F51B5", "#2196F3", "#03A9F4", "#00BCD4", "#009688", "#4CAF50", "#8BC34A", "#CDDC39", "#FFEB3B", "#FFC107", "#FF9800", "#FF5722", "#795548", "#607D8B"],
+        selectedColor: '#4050B5',
         isStartTimePickerVisible: false,
         isEndTimePickerVisible: false,
         isKeyboardVisible: false,
@@ -98,6 +100,14 @@ export default class AddLesson extends Component {
 
                     {this.dayPicker()}
                     {this.timePicker()}
+                    <View style={{bottom: "2%"}}>
+                        <ColorPicker
+                            colors={this.state.colors}
+                            selectedColor={this.state.selectedColor}
+                            onSelect={(color) => this.setState({selectedColor: color})}
+                        />
+                    </View>
+
 
                     <Button block onPress={()=> this.addLesson()} style={styles.button}>
                         <Text style={{color: "#FFF"}}>Submit Lesson</Text>
@@ -200,8 +210,9 @@ export default class AddLesson extends Component {
             type: this.state.type,
             place: this.state.place,
             day: this.state.day.toString(),
-            startTime: this.state.startTime.toLocaleTimeString().substring(0,5),
-            endTime: this.state.endTime.toLocaleTimeString().substring(0,5),
+            startTime: this.state.startTime.toLocaleTimeString().substring(0,2),
+            endTime: this.state.endTime.toLocaleTimeString().substring(0,2),
+            color: this.state.selectedColor,
         };
         User.addLesson(lesson);
         if (User.isOnline()) LessonHandler.saveLesson(lesson);
