@@ -1,7 +1,6 @@
 import React, {Component} from "react";
 import {Container, Icon, Left, List, ListItem, Text, Right, Col, Row, Grid, Content} from "native-base";
 import {StyleSheet, View} from "react-native";
-import type {Lesson} from "../model/Lesson";
 
 
 

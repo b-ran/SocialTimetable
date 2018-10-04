@@ -1,16 +1,15 @@
 import {User} from "../model/User";
 import firebase from "firebase"
+import {UserMessages} from "../components/UserMessages";
 
 export class AccountHandler {
 
 
     static attemptSignIn(email, password) {
-        return new Promise( (resolve) => {
-            if (email == null || email === "" || password == null || password === "") {
-                throw new Error(UserMessages.MISSING_DATA);
-            }
+
+        return new Promise((resolve) => {
             firebase.auth().signInWithEmailAndPassword(email, password).then(() => {
-                firebase.database().ref("user/" + firebase.auth().currentUser.uid).once("value", (data)=> {
+                firebase.database().ref("user/" + firebase.auth().currentUser.uid).once("value", (data) => {
                     let rawUserData = data.toJSON();
                     let newUserState = {
                         uid: firebase.auth().currentUser.uid,
@@ -24,6 +23,8 @@ export class AccountHandler {
                     User.updateState(newUserState);
                     resolve();
                 });
+            }).catch((error) => {
+                UserMessages.toast(error.toString());
             });
         });
     }
@@ -34,12 +35,12 @@ export class AccountHandler {
     }
 
     static async attemptRegistration(email, password) {
-        if (email == null || email === "" || password == null || password === "") {
-            throw new Error(UserMessages.MISSING_DATA);
-        }
-
-        await firebase.auth().createUserWithEmailAndPassword(email, password);
-        await firebase.auth().signInWithEmailAndPassword(email, password);
+        await firebase.auth().createUserWithEmailAndPassword(email, password).catch((error) => {
+            UserMessages.toast(error.toString());
+        });
+        await firebase.auth().signInWithEmailAndPassword(email, password).catch((error) => {
+            UserMessages.toast(error.toString());
+        });
         await firebase.database().ref("user/" + firebase.auth().currentUser.uid).set(
             {
                 uid: firebase.auth().currentUser.uid,
@@ -47,15 +48,14 @@ export class AccountHandler {
                 lastName: User.state.lastName
             }
         ).catch((error) => {
-            console.log(error);
+            UserMessages.toast(error.toString());
         });
     }
 
     static async attemptSendingPasswordResetEmail(email) {
-        if (email == null || email === "") {
-            throw new Error(UserMessages.MISSING_EMAIL);
-        }
-        await firebase.auth().sendPasswordResetEmail(email)
+        await firebase.auth().sendPasswordResetEmail(email).catch((error) => {
+            UserMessages.toast(error.toString());
+        });
     }
 
 }

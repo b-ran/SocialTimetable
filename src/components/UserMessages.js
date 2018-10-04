@@ -10,6 +10,10 @@ export class UserMessages {
         this.toastr.showToast(this.SIGN_OUT);
     }
 
+    static toast(msg) {
+        this.toastr.showToast(msg);
+    }
+
     static toastr = {
         showToast: (message, duration = 2500) => {
             Toast.show({
